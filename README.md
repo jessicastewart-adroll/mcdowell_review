@@ -1,1 +1,1 @@
-# Gayle Laakmann McDowell interview questions 
+# Gayle Laakmann McDowell questions 
