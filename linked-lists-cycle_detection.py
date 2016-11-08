@@ -6,7 +6,7 @@ class Node(object):
 
 def has_cycle(head):
     visited_nodes = []
-    if head.data == None:
+    if head == None:
         return False
 
     visited_nodes.append(head)
