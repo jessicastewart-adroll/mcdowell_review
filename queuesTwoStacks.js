@@ -8,7 +8,8 @@ dequeue: remove element from front
   3 print first
   
 *input: line count, operation number, element
-/*
+*/
+
 function processData(input) {
     let Queue = function() {
         this.firstQueue = [];
