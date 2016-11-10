@@ -1,4 +1,4 @@
-'''
+/*
 enqueue: add element to end
 dequeue: remove element from front
 
@@ -8,4 +8,4 @@ dequeue: remove element from front
   3 print first
   
 *input: line count, operation number, element
-'''
+/*
