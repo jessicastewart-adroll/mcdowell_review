@@ -9,3 +9,7 @@ dequeue: remove element from front
   
 *input: line count, operation number, element
 /*
+let Queue = function() {
+  this.first = [];
+  this.second = []
+}
