@@ -30,7 +30,7 @@ function processData(input) {
     }
 
     Queue.prototype.peek = function() {
-      if (this.output.length === 0) {
+      if (this.output.length === 0) { // prevent pushing new elements in incorrect order
         while (this.input.length != 0) {
             this.output.push(this.input.pop());
         }
