@@ -12,34 +12,30 @@ dequeue: remove element from front
 
 function processData(input) {
     let Queue = function() {
-        this.firstQueue = [];
-        this.secondQueue = [];
+        this.input = [];
+        this.output = [];
     }
 
     Queue.prototype.enqueue = function(element) {
-      this.firstQueue.push(element);
+      this.input.push(element);
     }
 
     Queue.prototype.dequeue = function() {
-      while (this.firstQueue.length > 1) {
-        let temp = this.firstQueue.pop();
-        this.secondQueue.push(temp);
+      if (this.output.length === 0) {
+        while (this.input.length != 0) {
+            this.output.push(this.input.pop());
+        }
       }
-  
-      let final = this.firstQueue.pop();
-  
-      while (this.secondQueue.length > 0) {
-        let temp = this.secondQueue.pop();
-        this.firstQueue.push(temp);
-      }
-  
-      return final;
+      return this.output.pop();
     }
 
     Queue.prototype.peek = function() {
-      if (this.firstQueue.length > 0) {
-        console.log(this.firstQueue[0]);
-      };
+      if (this.output.length === 0) {
+        while (this.input.length != 0) {
+            this.output.push(this.input.pop());
+        }
+      }
+      console.log(this.output[this.output.length-1]);
     }
     
     commandKey = {
