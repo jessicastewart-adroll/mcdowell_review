@@ -18,28 +18,19 @@ TODO: fix return statements
 
 def check_binary_search_tree_(root):
     if root.data:
-        print('root', root.data)
         continue_check(root)
     else:
         return True
 
-def check_left(node):
-    print('left check', node.data, node.left.data)
-    if node.left.data >= node.data:
-        return False
-    else:
-        continue_check(node.left)
-
-def check_right(node):
-    print('right check', node.data, node.right.data)
-    if node.right.data <= node.data:
-        return False
-    else:
-        continue_check(node.right)
-
 def continue_check(node):
     if node.data and node.left:
-        check_left(node)
+        if node.left.data >= node.data:
+            return False
+        else:
+            continue_check(node.left)
         
     if node.data and node.right:
-        check_right(node)   
+        if node.right.data <= node.data:
+            return False
+        else:
+            continue_check(node.right) 
