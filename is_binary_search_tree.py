@@ -12,25 +12,16 @@ greather than on RIGHT
 *CANNOT have duplicates in binary search tree
 input: root node
 output: True/False
-
-TODO: fix return statements
 """
 
-def check_binary_search_tree_(root):
-    if root.data:
-        continue_check(root)
-    else:
-        return True
+def check_binary_search_tree(root):
+    return check(root, float('inf'), float('-inf'))    
 
-def continue_check(node):
-    if node.data and node.left:
-        if node.left.data >= node.data:
-            return False
-        else:
-            continue_check(node.left)
-        
-    if node.data and node.right:
-        if node.right.data <= node.data:
-            return False
-        else:
-            continue_check(node.right) 
+def check(node, pos_inf, neg_inf):
+    if not node:
+        return True
+    
+    if node.left > node.data or node.right < node.data:
+        return False
+    
+    return check(node.left) and check(node.right)
