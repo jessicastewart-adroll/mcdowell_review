@@ -1,26 +1,11 @@
-"""
-Node is defined as
-class node:
-    def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
-        
-less than on LEFT
-greather than on RIGHT
-*helper functions
-*CANNOT have duplicates in binary search tree
-input: root node
-output: True/False
-"""
-class node:
+class Node:
     def __init__(self, data, left=None, right=None):
         self.data = data
         self.left = None
         self.right = None
 
 def check_binary_search_tree(root):
-    return check(root, float('inf'), float('-inf'))    
+    return check(root, float('inf'), float('-inf'))
 
 def check(node, pos_inf, neg_inf):
     if not node:
@@ -28,7 +13,7 @@ def check(node, pos_inf, neg_inf):
     
     if node.left > node.data or node.right < node.data:
         return False
-    
+
     return check(node.left) and check(node.right)
 
 
@@ -41,24 +26,24 @@ six = Node(6)
 seven = Node(7)
 
 binary_tree = four
-root.left = three
-root.right = five
+binary_tree.left = three
+binary_tree.right = five
 three.left = one
 three.right = two
 five.right = six
 six.right = seven
 
 duplicate_tree = four
-root.left = three
-root.right = five
+duplicate_tree.left = three
+duplicate_tree.right = five
 three.left = one
 three.right = three
 five.right = six
 six.right = seven
 
 broken_tree = four
-root.left = three
-root.right = five
+broken_tree.left = three
+broken_tree.right = five
 three.left = one
 three.right = two
 five.left = six
