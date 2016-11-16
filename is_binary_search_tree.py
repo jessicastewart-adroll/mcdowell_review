@@ -40,10 +40,26 @@ five = Node(5)
 six = Node(6)
 seven = Node(7)
 
-root = four
+binary_tree = four
 root.left = three
 root.right = five
 three.left = one
 three.right = two
 five.right = six
 six.right = seven
+
+duplicate_tree = four
+root.left = three
+root.right = five
+three.left = one
+three.right = three
+five.right = six
+six.right = seven
+
+broken_tree = four
+root.left = three
+root.right = five
+three.left = one
+three.right = two
+five.left = six
+five.right = seven
