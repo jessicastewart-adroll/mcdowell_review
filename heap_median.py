@@ -26,7 +26,6 @@ HEAP
     *heapifyUp
     *heapifyDown
 '''
-IPython 5.0.0 -- An enhanced Interactive Python.
 class MinIntHeap(object):
         def __init__(self):
                 self.size = 0
