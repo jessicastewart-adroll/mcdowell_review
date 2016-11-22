@@ -26,6 +26,7 @@ HEAP
     *heapifyUp
     *heapifyDown
 '''
+IPython 5.0.0 -- An enhanced Interactive Python.
 class MinIntHeap(object):
         def __init__(self):
                 self.size = 0
@@ -59,7 +60,7 @@ class MinIntHeap(object):
                 return self.items[self.get_parent_index(index)]
 
         def swap(self, index_one, index_two):
-                self.items[indexOne], self.items[indexTwo] = self.items[indexTwo], self.items[indexOne]
+                self.items[index_one], self.items[index_two] = self.items[index_two], self.items[index_one]
 
         def peek(self):
                 if self.size == 0:
@@ -77,7 +78,7 @@ class MinIntHeap(object):
                 return item
 
         def add(self, item):
-                self.items[self.size] = item
+                self.items.append(item)
                 self.size += 1
                 self.heapify_up()
 
