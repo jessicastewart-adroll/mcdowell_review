@@ -28,7 +28,6 @@ HEAP
 '''
 class MinIntHeap(object):
         def __init__(self):
-                self.capacity = 10
                 self.size = 0
                 self.items = []
 
@@ -42,22 +41,22 @@ class MinIntHeap(object):
                 return (child_index - 1)/2
 
         def has_left_child(self, index):
-                return get_left_child_index(index) < size
+                return self.get_left_child_index(index) < self.size
 
         def has_right_child(self, index):
-                return get_right_child_index(index) < size
+                return self.get_right_child_index(index) < self.size
 
         def has_parent(self, index):
-                return get_parent_index(index) >= 0
+                return self.get_parent_index(index) >= 0
 
         def left_child(self, index):
-                return items[get_left_child_index(index)]
+                return self.items[self.get_left_child_index(index)]
 
         def right_child(self, index):
-                return items[get_right_child_index(index)]
+                return self.items[self.get_right_child_index(index)]
 
         def parent(self, index):
-                return items[get_parent_index(index)]
+                return self.items[self.get_parent_index(index)]
 
         def swap(index_one, index_two):
                 self.items[indexOne], self.items[indexTwo] = self.items[indexTwo], self.items[indexOne]
