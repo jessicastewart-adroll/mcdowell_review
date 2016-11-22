@@ -58,7 +58,7 @@ class MinIntHeap(object):
         def parent(self, index):
                 return self.items[self.get_parent_index(index)]
 
-        def swap(index_one, index_two):
+        def swap(self, index_one, index_two):
                 self.items[indexOne], self.items[indexTwo] = self.items[indexTwo], self.items[indexOne]
 
         def peek(self):
@@ -76,7 +76,7 @@ class MinIntHeap(object):
                 self.heapify_down()
                 return item
 
-        def add(item):
+        def add(self, item):
                 self.items[self.size] = item
                 self.size += 1
                 self.heapify_up()
