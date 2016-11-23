@@ -26,8 +26,6 @@ HEAP
     *heapifyUp
     *heapifyDown
 '''
-import math
-
 class MinIntHeap(object):
         def __init__(self):
                 self.size = 0
@@ -104,6 +102,6 @@ class MinIntHeap(object):
         def get_median(self):
                 odd = self.size % 2
                 if odd:
-                    return float(self.items[round(self.size/2)])
+                    return float(self.items[int(self.size/2)])
                 else:
-                    return round((self.items[round(self.size/2) - 1] + self.items[round(self.size/2)]) / 2, 1)
+                    return round((self.items[int(self.size/2)] + self.items[int(self.size/2-1)]) / 2, 1)
