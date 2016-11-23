@@ -26,6 +26,8 @@ HEAP
     *heapifyUp
     *heapifyDown
 '''
+import math
+
 class MinIntHeap(object):
         def __init__(self):
                 self.size = 0
@@ -38,7 +40,7 @@ class MinIntHeap(object):
                 return (2*parent_index) + 2
 
         def get_parent_index(self, child_index):
-                return (child_index - 1)/2
+                return round((child_index - 1)/2)
 
         def has_left_child(self, index):
                 return self.get_left_child_index(index) < self.size
@@ -98,3 +100,10 @@ class MinIntHeap(object):
                         else:
                                 self.swap(index, smaller_child_index)
                         index = smaller_child_index
+                        
+        def get_median(self):
+                odd = self.size % 2
+                if odd:
+                    return float(self.items[round(self.size/2)])
+                else:
+                    return round((self.items[round(self.size/2) - 1] + self.items[round(self.size/2)]) / 2, 1)
