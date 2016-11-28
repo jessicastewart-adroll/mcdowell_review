@@ -38,7 +38,7 @@ class MinIntHeap(object):
                 return (2*parent_index) + 2
 
         def get_parent_index(self, child_index):
-                return round((child_index - 1)/2)
+                return (child_index - 1)/2
 
         def has_left_child(self, index):
                 return self.get_left_child_index(index) < self.size
