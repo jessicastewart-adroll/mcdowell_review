@@ -99,9 +99,18 @@ class MinIntHeap(object):
                                 self.swap(index, smaller_child_index)
                         index = smaller_child_index
                         
+        def get_upper_midpoint(self):
+                upper_index = int(self.size/2)
+                return float(self.items[upper_index])
+
+        def get_lower_midpoint(self):
+                lower_index = int((self.size/2)-1)
+                return float(self.items[lower_index])
+
         def get_median(self):
                 odd = self.size % 2
                 if odd:
-                    return float(self.items[int(self.size/2)])
+                    return self.get_upper_midpoint()
                 else:
-                    return round((self.items[int(self.size/2)] + self.items[int(self.size/2-1)]) / 2, 1)
+                    return (self.get_lower_midpoint() + self.get_upper_midpoint()) / 2
+
