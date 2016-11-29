@@ -89,4 +89,34 @@ class MinIntHeap(object):
                     return self.get_upper_midpoint()
                 else:
                     return (self.get_lower_midpoint() + self.get_upper_midpoint()) / 2
+        
+import sys
+
+min_heap_first = MinIntHeap()
+min_heap_second = MinIntHeap()
+
+n = int(input())
+a = []
+a_i = 0
+for a_i in range(n):
+   a_t = int(input())
+   a.append(a_t)
+
+   min_heap_first.add(a_t)
+   odd = min_heap_first.size % 2
+   upper_median = int(min_heap_first.size/2)
+
+   if odd:
+        while min_heap_first.size < upper_median:
+                min_heap_second.add(min_heap_first.pop())
+        print(min_heap_first.peek())
+        while min_heap_first.size > 0:
+                min_heap_second.add(min_heap_first.pop())
+
+   else:
+        while min_heap_first.size < upper_median:
+                min_heap_second.add(min_heap_second.pop())
+        print(float(min_heap_first.pop() + min_heap_first.pop()) / 2)
+        while min_heap_first.size > 0:
+                min_heap_second.add(min_heap_first.pop())
 
