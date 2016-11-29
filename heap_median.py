@@ -101,22 +101,28 @@ a_i = 0
 for a_i in range(n):
    a_t = int(input())
    a.append(a_t)
-
+        
    min_heap_first.add(a_t)
+
    odd = min_heap_first.size % 2
    upper_median = int(min_heap_first.size/2)
 
    if odd:
-        while min_heap_first.size < upper_median:
-                min_heap_second.add(min_heap_first.pop())
+        while min_heap_first.size > upper_median:
+                min_heap_second.add(min_heap_first.poll())
         print(min_heap_first.peek())
         while min_heap_first.size > 0:
-                min_heap_second.add(min_heap_first.pop())
-
+                min_heap_second.add(min_heap_first.poll())
    else:
-        while min_heap_first.size < upper_median:
-                min_heap_second.add(min_heap_second.pop())
-        print(float(min_heap_first.pop() + min_heap_first.pop()) / 2)
+        while min_heap_first.size > upper_median:
+                min_heap_second.add(min_heap_first.poll())
+        first = min_heap_first.poll()
+        second = min_heap_first.poll()
+        min_heap_second.add(first)
+        min_heap_second.add(second)
+        print(float(first + second) / 2)
         while min_heap_first.size > 0:
-                min_heap_second.add(min_heap_first.pop())
+                min_heap_second.add(min_heap_first.poll())
 
+   while min_heap_second.size > 0:
+        min_heap_second.add(min_heap_first.poll())     
