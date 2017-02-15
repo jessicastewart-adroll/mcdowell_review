@@ -9,12 +9,12 @@ class Player:
         
     def comparator(a, b):
       if a.score != b.score:
-        return a.score - b.score
+        return b.score - a.score
       else:
         if a.name == b.name:
           return 0
         else:  
-          -1 if a.name < b.name else 1
+          return -1 if a.name < b.name else 1
 
 inputs = [('allen1', 100), ('allen2', 90), ('ben1', 100), ('ben2', 50)]
 data = []
