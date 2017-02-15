@@ -1,15 +1,17 @@
 # print cost positions
 # index from 1
 
-def find_flavors(fund, costs):
+def find_pair_position(pair, costs):
     for i, cost in enumerate(costs):
-        if fund > cost and fund-cost in costs:
-            return cost, fund-cost
 
 t = int(input().strip())
 for a0 in range(t):
     fund = int(input().strip())
-    fund = int(input().strip())
+    flavors = int(input().strip())
     costs = list(map(int, input().strip().split(' ')))
-    c1, c2 = find_flavors(fund, costs)
-    print(c1, c2)
+    
+    for i, cost in enumerate(costs):
+        if fund > cost:
+            pair_position = find_pair_position(fund-cost, costs)
+            if pair_position:
+                print(i+1, pair_position)
