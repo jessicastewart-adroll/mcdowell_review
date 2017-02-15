@@ -5,21 +5,24 @@ class Player:
         self.score = score
         
     def __repr__(self):
-        return "{}: {}".format(name, score)
+        return "{}: {}".format(self.name, self.score)
         
-    def comparator(self, a, b):
-      print(a, b)
-      if a.score == b.score:
-        a if a.name > b.name else b
+    def comparator(a, b):
+      if a.score != b.score:
+        return a.score - b.score
       else:
-        a if a.score > b.score else b
+        if a.name == b.name:
+          return 0
+        else:  
+          -1 if a.name < b.name else 1
 
-inputs = [('allen', 100), ('allen', 90), ('ben', 100), ('ben', 50)]
+inputs = [('allen1', 100), ('allen2', 90), ('ben1', 100), ('ben2', 50)]
 data = []
 for i in inputs:
     name, score = i
     data.append(Player(name, score))
-    
+
+print(data)    
 data = sorted(data, key=cmp_to_key(Player.comparator))
 # for i in data:
 #     print(i.name, i.score)
