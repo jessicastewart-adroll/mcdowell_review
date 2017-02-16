@@ -16,14 +16,16 @@ for a0 in range(t):
             if pair_position:
                 print(i+1, pair_position)
 
-def binary_search(values, to_find, count=0):
-	mid = len(values)//2
+def binary_search(values, left, right, to_find):
+  mid = len(values)//2
 
-	if values[mid] == to_find:
-		return mid + count
-	elif values[mid] < to_find:
-		binary_search(values[mid+1:], to_find, mid)
-	elif values[mid] > to_find:
-		binary_search(values[:mid], to_find)
+  if values[mid] == to_find:
+    return mid
+  elif values[mid] < to_find:
+    return binary_search(values, to_find)
+  elif values[mid] > to_find:
+    return binary_search(values[:mid], to_find)
 
-	return -1
+  return -1
+	
+print(binary_search([1, 2, 3, 4, 5], 0, 4, 4))
