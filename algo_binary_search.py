@@ -15,3 +15,15 @@ for a0 in range(t):
             pair_position = find_pair_position(fund-cost, costs)
             if pair_position:
                 print(i+1, pair_position)
+
+def binary_search(values, to_find, count=0):
+	mid = len(values)//2
+
+	if values[mid] == to_find:
+		return mid + count
+	elif values[mid] < to_find:
+		binary_search(values[mid+1:], to_find, mid)
+	elif values[mid] > to_find:
+		binary_search(values[:mid], to_find)
+
+	return -1
