@@ -51,3 +51,15 @@ for a0 in range(t):
     flavors = get_flavors(a) 
     flavors = sorted(flavors, key=cmp_to_key(Flavor.comparator))
     pair = get_flavor_pair(flavors, m)
+
+#####alternative#####
+
+cost_map = {}
+for i, cost in enumerate(a):
+    sunny = cost
+    johnny = m - cost
+    # add as you go
+    if johnny in cost_map.keys():
+        print(cost_map[johnny]+1, i+1)
+    else:
+        cost_map[cost] = i
