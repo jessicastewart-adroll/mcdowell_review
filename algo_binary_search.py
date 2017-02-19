@@ -38,7 +38,7 @@ def get_flavor_pair(flavors, money):
         if cost_two > 0:
             result = binary_search(flavors, 0, len(flavors)-1, cost_two)
             if result > -1:
-                print(flavor.position, result)
+                print(min(flavor.position, result), max(flavor.position, result))
                 return
         else:
             return
