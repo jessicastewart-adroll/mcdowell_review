@@ -5,7 +5,7 @@ def get_max_region(grid, row_index, column_index):
     if grid[row_index][column_index] == 0:
         return 0
     
-    if row_index >= 0 and column_index >= 0 and row_index < row_bound and column_index < column_bound:
+    if row_index < 0 or column_index < 0 or row_index > row_bound or column_index > column_bound:
         return 0
     
     count = 1
@@ -16,6 +16,7 @@ def get_max_region(grid, row_index, column_index):
         column = column_index + neighbor[1]
         # check bounds 
         if row >= 0 and column >= 0 and row < row_bound and column < column_bound and grid[row][column] == 1:
+            print(row_index, column_index, 'passed', count)
             count += 1
     return count        
     
@@ -26,13 +27,13 @@ def getBiggestRegion(grid):
         column_index = 0
         for column in row:
             max_region = max(max_region, get_max_region(grid, row_index, column_index))
-            return
             column_index += 1
+    return max_region        
 
 grid = [
     [1, 1, 0, 0],
     [0, 1, 1, 0],
     [0, 0, 1, 0],
-    [1, 0, 0, 0]
+    [1, 0, 0, 1]
 ]
 print(getBiggestRegion(grid))
