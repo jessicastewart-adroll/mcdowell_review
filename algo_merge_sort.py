@@ -1,3 +1,5 @@
+# don't create new array for performance 
+
 def mergeCount(A, B, count=0):
   C = []
   while A and B:
