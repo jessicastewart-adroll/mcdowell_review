@@ -1,18 +1,44 @@
 class TrieNode(object):
     def __init__(self, value):
         self.value = value
+        self.is_word = False
+        self.children = {}
         
 class Trie(object):
     def __init__(self):
         self.root = TrieNode('')
-        self.children = {}
         
     def add(self, name):
-        pass
-    
+        node = self.root
+        
+        for letter in name:
+            if letter in node.children:
+                node = node.children[letter]
+            else:
+                node.children[letter] = TrieNode(letter)
+                node = node.children[letter]
+                
+        node.is_word = True
+        
+    def dfs(node, ):
+        if node.is_word:
+            
+        
     def find(self, partial):
-        pass
-
+        node = self.root
+        
+        for letter in partial:
+            if letter in node.children:
+                node = node.children[letter]
+            else: 
+                return []    
+        
+        words = []
+        word = partial
+        
+        while node.children:
+            if node.children
+        
 trie = Trie()
 
 n = int(input().strip())
@@ -21,6 +47,8 @@ for a0 in range(n):
 
     if op == 'add':
         trie.add(contact)
-    if opp == 'find':
-        count = trie.find(contact)
-        print(count)
+    if op == 'find':
+        words = trie.find(contact)
+        print(len(words))
+    
+    
