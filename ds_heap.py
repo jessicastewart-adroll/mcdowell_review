@@ -1,6 +1,6 @@
 import heapq
 
-def keep_even(array):
+def running_median(array):
   if not array:
     return
   if len(array) < 2:
@@ -32,9 +32,9 @@ def keep_even(array):
   else: 
     return float(heapq.heappop(upper))
   
-print(keep_even([12]))
-print(keep_even([12, 4]))
-print(keep_even([12, 4, 5]))
-print(keep_even([12, 4, 5, 3]))
-print(keep_even([12, 4, 5, 3, 8]))
-print(keep_even([12, 4, 5, 3, 8, 7]))
+print(running_median([12]))
+print(running_median([12, 4]))
+print(running_median([12, 4, 5]))
+print(running_median([12, 4, 5, 3]))
+print(running_median([12, 4, 5, 3, 8]))
+print(running_median([12, 4, 5, 3, 8, 7]))
