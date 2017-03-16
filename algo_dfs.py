@@ -1,39 +1,44 @@
-def get_max_region(grid, row_index, column_index):
-    row_bound = len(grid)
-    column_bound = len(grid[0])
-    
-    if grid[row_index][column_index] == 0:
-        return 0
-    
-    if row_index < 0 or column_index < 0 or row_index > row_bound or column_index > column_bound:
-        return 0
-    
-    count = 1
-    grid[row_index][column_index] = 0
-    neighbors = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
-    for neighbor in neighbors:
-        row = row_index + neighbor[0]
-        column = column_index + neighbor[1]
-        # check bounds 
-        if row >= 0 and column >= 0 and row < row_bound and column < column_bound and grid[row][column] == 1:
-            print(row_index, column_index, 'passed', count)
-            count += 1
-    return count        
-    
+def largest_connected_component(board):
+	largest_count = 0
+	for row in range(len(board)):
+		for column in range(len(board[0])):
+			if board[row][column] == 0:
+				continue
+			else:
+				count = 1
+				count += dfs(board, row+1, column)
+				count += dfs(board, row-1, column)
+				count += dfs(board, row, column+1)
+				count += dfs(board, row, column-1)
+				count += dfs(board, row+1, column+1)
+				count += dfs(board, row-1, column-1)
+				count += dfs(board, row+1, column-1)
+				count += dfs(board, row-1, column+1)
+				largest_count = max(largest_count, count)
+	return largest_count			
 
-def getBiggestRegion(grid):
-    max_region = 0
-    for row_index, row in enumerate(grid):
-        column_index = 0
-        for column in row:
-            max_region = max(max_region, get_max_region(grid, row_index, column_index))
-            column_index += 1
-    return max_region        
-
-grid = [
-    [1, 1, 0, 0],
-    [0, 1, 1, 0],
-    [0, 0, 1, 0],
-    [1, 0, 0, 1]
-]
-print(getBiggestRegion(grid))
+def dfs(board, row, column):
+	if row < 0 or column < 0 or row >= len(board) or column >= len(board[0]):
+		return 0
+	if board[row][column] == 1:
+		board[row][column] = 0
+		count += 1
+		count += dfs(board, row+1, column)
+		count += dfs(board, row-1, column)
+		count += dfs(board, row, column+1)
+		count += dfs(board, row, column-1)
+		count += dfs(board, row+1, column+1)
+		count += dfs(board, row-1, column-1)
+		count += dfs(board, row+1, column-1)
+		count += dfs(board, row-1, column+1)
+		return 1	
+	else:
+		return 0	
+					
+board = [
+			[1, 1, 0, 0],
+			[0, 1, 1, 0],
+			[0, 0, 1, 0],
+			[1, 0, 0, 0],
+		]
+print(largest_connected_component(board))
