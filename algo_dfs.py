@@ -1,3 +1,4 @@
+### second try
 def largest_connected_component(board):
 	largest_count = 0
 	for row in range(len(board)):
@@ -18,7 +19,7 @@ def dfs(board, row, column, count):
 		if board[x][y] == 1:
 			board[row][column] = 0
 			count += 1 
-			dfs(board, x, y, count)
+			count = dfs(board, x, y, count)
 	return count		
 
 # TEST					
@@ -29,7 +30,8 @@ board = [
 			[1, 0, 0, 0],
 		]
 print(largest_connected_component(board))
-###
+
+### first try
 def largest_connected_component(board):
 	largest_count = 0
 	for row in range(len(board)):
