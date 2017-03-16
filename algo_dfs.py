@@ -1,3 +1,37 @@
+### third try
+def largest_connected_component(board):
+	largest_count = 0
+	for row in range(len(board)):
+		for column in range(len(board[0])):
+			largest_count = max(largest_count, dfs(board, row, column))
+	return largest_count			
+
+def dfs(board, row, column):
+	if row < 0 or column < 0 or row >= len(board) or column >= len(board[0]):
+		return 0
+
+	if not board[row][column]:
+		return 0
+	else:	
+		board[row][column] = 0
+		count = 1
+	
+	neighbors = [(1, 0), (0, 1), (1, 1), (-1, 0), (0, -1), (-1, -1), (1, -1), (-1, 1)]
+	for neighbor in neighbors:
+		x = row + neighbor[0]
+		y = column + neighbor[1]
+		count += dfs(board, x, y)
+	return count		
+
+# TEST					
+board = [
+			[1, 1, 0, 0],
+			[0, 1, 1, 0],
+			[0, 0, 1, 0],
+			[1, 0, 0, 0],
+		]
+print(largest_connected_component(board))
+
 ### second try
 def largest_connected_component(board):
 	largest_count = 0
