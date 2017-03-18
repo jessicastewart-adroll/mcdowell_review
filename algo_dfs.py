@@ -1,3 +1,41 @@
+### fourth try
+def search(grid, row, column):
+  if row < 0 or column < 0 or row >= len(grid) or column >= len(grid[0]):
+    return 0
+    
+  if not grid[row][column]:
+    return 0
+    
+  grid[row][column] = 0  
+  count = 1
+  count += search(grid, row+1, column)
+  count += search(grid, row, column+1)
+  count += search(grid, row, column-1)
+  count += search(grid, row-1, column)
+  count += search(grid, row-1, column-1)
+  count += search(grid, row+1, column+1)
+  count += search(grid, row-1, column+1)
+  count += search(grid, row+1, column-1)
+  return count
+    
+
+def getBiggestRegion(grid):
+  largest_region = 0
+  for row in range(len(grid)):
+    for column in range(len(grid[0])):
+      count = search(grid, row, column)
+      largest_region = max(count, largest_region)
+  return largest_region
+
+n = int(input().strip())
+m = int(input().strip())
+grid = []
+for grid_i in range(n):
+    grid_t = list(map(int, input().strip().split(' ')))
+    grid.append(grid_t)
+print(getBiggestRegion(grid))
+
+
 ### third try
 def largest_connected_component(board):
 	largest_count = 0
