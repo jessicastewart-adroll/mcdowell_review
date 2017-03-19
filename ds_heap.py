@@ -1,3 +1,21 @@
+# performant 
+#!/bin/python3
+import sys
+import bisect
+
+n = int(input().strip())
+a = []
+a_i = 0
+for a_i in range(n):
+  a_t = int(input().strip())
+  bisect.insort(a, a_t)
+  mid = len(a)//2
+  if len(a)%2:
+    print(float(a[mid]))
+  else:
+    print(float((a[mid]+a[mid-1])/2))
+
+######################
 import heapq
 
 def running_median(array):
