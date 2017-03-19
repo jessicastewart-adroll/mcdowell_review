@@ -1,4 +1,53 @@
 def count_inversions(array):
+  def merge(array, start, mid, end, temp):
+    count = 0
+    i = start
+    j = mid + 1
+    k = start
+    while i <= mid or j <= end:
+      if i > mid:
+        k+=1
+        j+=1
+        array[k] = temp[j]
+      elif j > end:
+        k+=1
+        i+=1
+        array[k] = temp[i]
+      elif temp[i] <= temp[j]:
+        k+=1
+        i+=1
+        array[k] = temp[i]
+      else:
+        k+=1
+        j+=1
+        array[k] = temp[j]
+        count += mid+1-i
+    return count    
+     
+  
+  def split(array, start, end, temp):
+    if start >= end:
+      return 0
+      
+    mid = start + (end - start) / 2 
+    count = 0
+    count += split(temp, start, mid, array)
+    count += split(temp, mid+1, end, array)
+    count += merge(array, start, mid, end, temp)
+    
+    return count
+    
+  temp = array[:]  
+  return split(array, 0, len(array)-1, temp)
+  
+test_one = [1, 1, 1, 2, 2]  
+test_two = [2, 1, 3, 1, 2]
+test_three = [2, 1, 3, -11, -2]
+#print(count_inversions(test_one))
+print(count_inversions(test_two))
+#print(count_inversions(test_three))
+###
+def count_inversions(array):
   def merge(left, right):
     swaps = 0
     i = 0
