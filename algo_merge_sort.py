@@ -1,6 +1,6 @@
 def count_inversions(array):
   def merge(left, right):
-    print(left, right)
+    swaps = 0
     i = 0
     j = 0
     result = []
@@ -9,12 +9,15 @@ def count_inversions(array):
         result.append(left[i])
         i+=1
       else:
+        swaps += 1
         result.append(right[j])
         j+=1
     if i < len(left): 
-      result.append(left[i:]) 
+      result.extend(left[i:])
+      swaps += len(left[i:])
     if j < len(right): 
-      result.append(left[j:])  
+      result.extend(right[j:]) 
+    print(left, right, swaps)
     return result  
     
   if len(array) <= 1:
@@ -28,8 +31,8 @@ test_one = [1, 1, 1, 2, 2]
 test_two = [2, 1, 3, 1, 2]
 test_three = [2, 1, 3, -11, -2]
 #print(count_inversions(test_one))
-#print(count_inversions(test_two))
-print(count_inversions(test_three))
+print(count_inversions(test_two))
+#print(count_inversions(test_three))
 
 # don't create new array for performance 
 def swap(array, a, b):
