@@ -1,80 +1,36 @@
+def merge(array, helper, start, mid, end):
+	for i in range(start, end+1):
+		helper[i] = array[i]
+	current = start
+	left = start
+	right = mid + 1
+
+	while left <= mid and right <= end:
+		if helper[left] <= helper[right]:
+			current += 1
+			left += 1
+			array[current] = helper[left]
+		else:
+			swaps += mid + 1 - left
+			current += 1
+			right += 1
+			array[current] = helper[right]	
+
+	while left <= mid:
+		current += 1
+		left += 1
+		array[current] = helper[left]
+
+def merge_sort(array, helper, start, end):
+	if start < end:
+		mid = (start + end) // 2
+		merge_sort(array, helper, start, mid)
+		merge_sort(array, helper, mid+1, end)
+		merge(array, helper, start, mid, end)
+
 def count_inversions(array):
-  def merge(array, start, mid, end, temp):
-    count = 0
-    i = start
-    j = mid + 1
-    k = start
-    while i <= mid or j <= end:
-      if i > mid:
-        k+=1
-        j+=1
-        array[k] = temp[j]
-      elif j > end:
-        k+=1
-        i+=1
-        array[k] = temp[i]
-      elif temp[i] <= temp[j]:
-        k+=1
-        i+=1
-        array[k] = temp[i]
-      else:
-        k+=1
-        j+=1
-        array[k] = temp[j]
-        count += mid+1-i
-    return count    
-     
-  
-  def split(array, start, end, temp):
-    if start >= end:
-      return 0
-      
-    mid = start + (end - start) / 2 
-    count = 0
-    count += split(temp, start, mid, array)
-    count += split(temp, mid+1, end, array)
-    count += merge(array, start, mid, end, temp)
-    
-    return count
-    
-  temp = array[:]  
-  return split(array, 0, len(array)-1, temp)
-  
-test_one = [1, 1, 1, 2, 2]  
-test_two = [2, 1, 3, 1, 2]
-test_three = [2, 1, 3, -11, -2]
-#print(count_inversions(test_one))
-print(count_inversions(test_two))
-#print(count_inversions(test_three))
-###
-def count_inversions(array):
-  def merge(left, right):
-    swaps = 0
-    i = 0
-    j = 0
-    result = []
-    while i < len(left) and j < len(right):
-      if left[i] <= right[j]:
-        result.append(left[i])
-        i+=1
-      else:
-        swaps += 1
-        result.append(right[j])
-        j+=1
-    if i < len(left): 
-      result.extend(left[i:])
-      swaps += len(left[i:])
-    if j < len(right): 
-      result.extend(right[j:]) 
-    print(left, right, swaps)
-    return result  
-    
-  if len(array) <= 1:
-    return array
-  mid = len(array)//2
-  left = count_inversions(array[:mid])
-  right = count_inversions(array[mid:])
-  return merge(left, right)
+	helper = []
+	merge_sort(array, helper, 0, len(array)-1)	
   
 test_one = [1, 1, 1, 2, 2]  
 test_two = [2, 1, 3, 1, 2]
