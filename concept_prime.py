@@ -20,3 +20,6 @@ p = int(input().strip())
 for a0 in range(p):
     n = int(input().strip())
     is_prime_sqrt(n)
+#test_cases = [-1, 0, 2, 7, 50, 15]
+#for n in test_cases:
+#	is_prime_sqrt(n)
