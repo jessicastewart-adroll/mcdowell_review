@@ -1,46 +1,34 @@
 class Trie(object):
-	__slots__ = ['root']
 	def __init__(self):
-		self.root = TrieNode('')
+		self.root = TrieNode()
 
 	def add(self, word):
 		node = self.root
 		for letter in word:
-			if node.children.get(letter):
+			if letter in node.children:
 				node = node.children[letter]
+				node.word_count += 1
 			else:
-				node.children[letter] = TrieNode(letter)			
+				node.children[letter] = TrieNode()			
 				node = node.children[letter]
-		node.is_word = True
+				node.word_count += 1
 
 	def find(self, partial):
-		def dfs(node, count):
-			if node.is_word:
-				count += 1
-
-			for child in node.children.values():
-				count = dfs(child, count)	
-			
-			return count 
-
 		node = self.root
 		count = 0
 		for letter in partial:
-			if node.children.get(letter):
-				node = node.children[letter]
-			else:
+			if not letter in node.children:
 				return 0
+			else:
+				node = node.children[letter]
 
-		count += dfs(node, count)		
-		
-		return count
+		return node.word_count
 
 
 class TrieNode(object):
-	__slots__ = ['letter', 'is_word', 'children']
-	def __init__(self, letter):
-		self.letter = letter
-		self.is_word = False	
+	__slots__ = ['word_count', 'children']
+	def __init__(self):
+		self.word_count = 0	
 		self.children = {}
 
 trie = Trie()
