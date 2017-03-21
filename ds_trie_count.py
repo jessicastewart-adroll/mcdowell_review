@@ -42,7 +42,11 @@ class TrieNode(object):
 		self.children = {}
 
 trie = Trie()
-trie.add('hack')
-trie.add('hackerrank')	
-print(trie.find('hac'))
-print(trie.find('hackerranking'))
+n = int(input().strip())
+for a0 in range(n):
+    op, contact = input().strip().split(' ')
+
+    if op == 'add':
+        trie.add(contact)
+    if op == 'find':
+        print(trie.find(contact))
