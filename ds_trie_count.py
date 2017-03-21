@@ -1,4 +1,5 @@
 class Trie(object):
+	__slots__ = ['root']
 	def __init__(self):
 		self.root = TrieNode('')
 
@@ -36,6 +37,7 @@ class Trie(object):
 
 
 class TrieNode(object):
+	__slots__ = ['letter', 'is_word', 'children']
 	def __init__(self, letter):
 		self.letter = letter
 		self.is_word = False	
