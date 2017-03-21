@@ -1,4 +1,4 @@
-### final ###
+### final ### https://www.quora.com/How-can-I-efficiently-compute-the-number-of-swaps-required-by-slow-sorting-methods-like-insertion-sort-and-bubble-sort-to-sort-a-given-array
 def merge(left, right):
     result = []
     i, j, inversions = 0, 0, 0
@@ -35,7 +35,7 @@ for a0 in range(t):
     arr = list(map(int, input().strip().split(' ')))
     count_inversions(arr)
 
-
+######
 
 def merge(array, helper, start, mid, end):
 	for i in range(start, end+1):
