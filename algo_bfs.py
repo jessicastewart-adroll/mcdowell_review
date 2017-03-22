@@ -49,31 +49,27 @@ class Graph(object):
 		self.adjacency_matrix[x].append(y)
 		self.adjacency_matrix[y].append(x)
 
-	def	find_all_distances(self, starting_node):
-		def bfs(connected_node, end_node, distance):
-			if end_node in self.adjacency_matrix[connected_node]:
-				return distance
-
-			for node in self.adjacency_matrix[connected_node]:
-				bfs(node, end_node, distance+6)	
+	def	find_all_distances(self, start_node):
+		def bfs(start_node, end_node, distance):
+			if start_node in self.adjacency_matrix[end_node]:
+				return distance	
+			for node in self.adjacency_matrix[end_node]:
+				return bfs(start_node, node, distance+6)	
+	
 
 		result = []
-
 		for end_node in range(1, self.node_count+1):
 			distance = 6
 			if not self.adjacency_matrix[end_node]:
-				print('not found', end_node)
 				result.append('-1')
-			elif starting_node in self.adjacency_matrix[end_node]:
-				print('found', end_node)
+			elif start_node in self.adjacency_matrix[end_node]:
 				result.append(str(distance))
+			elif start_node == end_node:
+				continue
 			else:	
-				print('keep going', end_node)
-				for connected_node in self.adjacency_matrix[end_node]:
-					distance = bfs(connected_node, end_node, distance+6)
-					result.append(str(distance))
-
-		print(' '.join(result))		
+				distance = bfs(start_node, end_node, distance)
+				result.append(str(distance))
+		print(' '.join(result))			
 
 
 # t = int(input())
