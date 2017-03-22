@@ -1,3 +1,36 @@
+'''
+undirected graph 
+distance between nodes is always 6
+s - starting node
+queries - graph, starting node
+get shortest distance from starting node to all the other nodes in the graph. Then print a single line of  space-separated integers listing node 's shortest distance to each of the  other nodes (
+ordered sequentially by node number
+if disconnected, print -1
+
+first line - number of queries
+second line - number of nodes and number of edges in the graph
+subsequent lines - edge connecting nodes 
+last line - index of starting node
+
+for each query - print space-separated integers denoting the shortest distances to each node from starting position
+listed sequentially by node number but not include node
+
+Sample Input
+2
+4 2
+1 2
+1 3
+1
+3 1
+2 3
+2
+Sample Output
+6 6 -1
+-1 6
+
+DISTANCE = 6
+UNREACHABLE = -1
+'''
 from collections import defaultdict
 
 class Graph(object):
