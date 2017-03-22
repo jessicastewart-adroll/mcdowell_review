@@ -20,8 +20,10 @@ class Graph(object):
 		def bfs(start_node, end_node, distance):
 			if start_node in self.adjacency_matrix[end_node]:
 				return distance	
+			shortest = distance	
 			for node in self.adjacency_matrix[end_node]:
-				return bfs(start_node, node, distance+6)	
+				shortest = min(shortest, bfs(start_node, node, distance+6))
+				return shortest	
 	
 
 		result = []
@@ -36,7 +38,7 @@ class Graph(object):
 			else:	
 				distance = bfs(start_node, end_node, distance)
 				result.append(str(distance))
-		print(' '.join(result))			
+		print(' '.join(result))		
 
 
 # t = int(input())
