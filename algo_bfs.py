@@ -1,45 +1,73 @@
-### get shortest
-from collections import defaultdict
+### get each distinct path
+from collections import defaultdict, deque
 
 class Graph(object):
 	def __init__(self, node_count):
 		self.node_count = node_count
-		self.adjacency_matrix = defaultdict(self.create_list)
+		self.graph = defaultdict(list)
 		for node in range(1, self.node_count+1):
-			self.adjacency_matrix[node]
-
-	@staticmethod		
-	def create_list():
-		return []		
+			self.graph[node]
 
 	def connect(self, x, y):
-		self.adjacency_matrix[x].append(y)
-		self.adjacency_matrix[y].append(x)
+		self.graph[x].append(y)
+		self.graph[y].append(x)
 
 	def	find_all_distances(self, start_node):
-		def bfs(start_node, end_node, distance):
-			if start_node in self.adjacency_matrix[end_node]:
-				return distance	
-			shortest = distance	
-			for node in self.adjacency_matrix[end_node]:
-				shortest = min(shortest, bfs(start_node, node, distance+6))
-				return shortest	
-	
+		print(self.graph)
+		visited = [False]*(len(self.graph)+1)
+		queue = deque()
 
-		result = []
-		for end_node in range(1, self.node_count+1):
-			distance = 6
-			if not self.adjacency_matrix[end_node]:
-				result.append('-1')
-			elif start_node in self.adjacency_matrix[end_node]:
-				result.append(str(distance))
-			elif start_node == end_node:
-				continue
-			else:	
-				distance = bfs(start_node, end_node, distance)
-				result.append(str(distance))
-		print(' '.join(result))		
+		queue.append(start_node)
 
+		while queue:
+			val = queue.popleft()
+			print(val)
+			visited[val] = True
+
+			for i in self.graph[val]:
+				if not visited[i]:
+					queue.append(i)
+
+	def	find_path(self, start_node, end_node):
+		print(self.graph)
+		visited = [False]*(len(self.graph)+1)
+		queue = deque()
+
+		queue.append(start_node)
+
+		while queue:
+			val = queue.popleft()
+			print(val)
+			visited[val] = True
+			if val == end_node:
+				return
+
+			for i in self.graph[val]:
+				if not visited[i]:
+					queue.append(i)
+
+	def bfs(self, start, end):
+		print('start', start, 'end', end)
+		queue = deque()
+		
+		visited = [False]*(len(self.graph)+1)
+		queue.append(start)
+
+		while queue:
+			val = queue.popleft()
+			print(val)
+			visited[val] = True
+			if val == end:
+				return
+
+			for i in self.graph[val]:
+				if not visited[i]:
+					queue.append(i)		
+
+	def	find_all_pathes(self, end):
+		for n in self.graph:
+			if not n==end:
+				self.bfs(n, end)	
 
 # t = int(input())
 # for i in range(t):
