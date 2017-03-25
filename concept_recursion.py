@@ -9,28 +9,22 @@ n -> height of staircase (1 to 36)
 3 -> 4
 7 -> 44
 '''
-def possible_climbs(staircase):
-	steps = [1, 2, 3]
-	trips = []
+def climb_permutations(n, counts={}):
+	STEPS = [3, 2, 1]
 
-	for step in steps:
-		if step == 1:
-			trips.append([1]*staircase)
-		else:
-			i = 1
-			while staircase - (step*i) > 0:
-				i+=1
+	if n < 0:
+		return 0
+	if n <= 1:
+		return 1
 
-def check_and_subtract(height, step):
-	if step > height return height
+	total = 0
+	for step in STEPS:
+		if not counts.get(n-step):
+			counts[n-step] = climb_permutations(n-step, counts)
+		total += counts[n-step]   
+	return total
 
-	i = 1
-	while height - (step*i) > 0:
-		i += 1
-
-	return height - (step*i)
-
-
-possible_climbs(1)	
-possible_climbs(4)	
-possible_climbs(44)		
+s = int(input().strip())
+for a0 in range(s):
+    n = int(input().strip())
+    print(climb_permutations(n))
