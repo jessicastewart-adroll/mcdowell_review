@@ -1,24 +1,19 @@
-'''
-n -> total dollars
-m -> dollar values (infinite amount of each)
+def make_change(total, coins, cache={}):
+	if total == 0:
+		return 0
+	if total == 1:
+		return 1
 
-'''
-def single_denom(n, c):
-	count = n//c
+	result = 0
+	for coin in coins:
+		if not cache.get(total-coin):
+			cache[total-coin] = make_change(total-coin, coins, cache)
+		result += cache[total-coin]
 
-	total = [c]*count
-	return total
+	return result	
 
-# single_denom(10, 2)	
-# single_denom(7, 2)	
-# single_denom(1, 2)	
+test_total = 4
+test_coins = [1, 2, 3]
+test_solution = 4
 
-def get_change(n):
-	coins = [2, 3, 1]
-	result = []
-	for c in coins:
-		result += single_denom(n-sum(result), c)
-
-	print(result)	
-
-get_change(10)	
+print(make_change(test_total, test_coins))
